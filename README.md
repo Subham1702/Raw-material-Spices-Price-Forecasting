@@ -1,4 +1,4 @@
-# Raw-material-Spices-Price-Forecasting.
+# Raw-material Price Forecasting.
 ## Business Problem: 
 The business problem at hand is the unpredictable fluctuation in the prices of raw spice materials, negatively impacting the cost structure and inventory management.
 ## Business Solution: 
