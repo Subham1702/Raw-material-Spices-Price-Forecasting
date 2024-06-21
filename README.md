@@ -7,6 +7,9 @@ First, I collected research papers related to our problem and after that I tried
 ### Using Power BI.
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/Screenshot%20(328).png)
 
+### Using Looker Studio.
+![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/IMG-20240408-WA0001.jpg)
+
 ## Technology stack:
 ### 1. For EDA and Data Preprocessing:
 • Python: NumPy, Pandas, Matplotlib, Seaborn.
