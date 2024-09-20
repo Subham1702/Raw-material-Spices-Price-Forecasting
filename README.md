@@ -345,12 +345,7 @@ ALTER TABLE spices_data ADD date DATE;
 set sql_safe_updates = 0;
 UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
 </details>
- ```
 
-</details> 
-
-
-<details> <summary>Click to expand EDA and Pre-processing using Python</summary></details>
 
 ```python
 -- Python code
