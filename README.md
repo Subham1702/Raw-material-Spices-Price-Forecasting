@@ -5,7 +5,7 @@ The business problem at hand is the unpredictable fluctuation in the prices of r
 First, I collected research papers related to our problem and after that I tried to obtain any relevant dataset from the collected research articles. Using a secondary dataset (provided by our client) I performed Exploratory Data Analysis (EDA) using MySQL and Python for deriving preliminary insights from the data. After EDA, I jumped into the Data Preprocessing section and cleaned the raw data accordingly using MySQL and Python. Then, I pushed the cleaned data from MySQL to Power BI for visualizing the data. I also used MS Excel as well as an open-source online platform called Looker Studio for creating interactive dashboards.
 ### EDA and presprocessing code	
 <details>
-  <summary>Click to expand EDA and Preprocessing using MySQL</summary>
+  <summary>Click to expand EDA and Preprocessing using MySQL and Python</summary>
   
 ```sql
 -- MySQL code
@@ -344,11 +344,10 @@ SELECT * FROM spices_data;
 ALTER TABLE spices_data ADD date DATE;
 set sql_safe_updates = 0;
 UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
-</details>
 
 
-```python
--- Python code
+
+# Using Python
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -461,7 +460,6 @@ sns.boxplot(data.Price_replaced)
 data['Price_new'] = pd.cut(data['Price_replaced'], bins = [min(data['Price_replaced']), data['Price_replaced'].quantile(0.25), data['Price_replaced'].mean(), max(data['Price_replaced'])],
                            labels = ["low", "medium", "high"])
 
-
 # replacing nan values #
 median_val = data['Price'].median()
 
@@ -471,11 +469,8 @@ average_val = data['Price_replaced'].mean()
 data['Price_replaced'].fillna(average_val, inplace = True)
 
 
-
-
 # check for count of NAN values in each column #
 data.isna().sum()
-
 
 # imputation of missing values #
 from sklearn.impute import SimpleImputer
@@ -483,9 +478,6 @@ from sklearn.impute import SimpleImputer
 mode_imputer = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
 data.Price_new = pd.DataFrame(mode_imputer.fit_transform(data[['Price_new']]))
 data.Location = pd.DataFrame(mode_imputer.fit_transform(data[['Location']]))
-
-
-
 
                  #----- Transformation -----#
 import scipy.stats as stats
@@ -497,7 +489,6 @@ stats.probplot(data.Price_replaced, dist = 'norm', plot = pylab)
 #  Function Transformation
 import numpy as np           
 stats.probplot(np.log(data.Price_replaced), dist = 'norm', plot = pylab)       
-
 
 # Power Transformation
 # (a) Box-cox Transformation-
@@ -538,9 +529,6 @@ data_tf = tf.fit_transform(data)
 # Transformed data
 prob = stats.probplot(data_tf.Price_replaced, dist = stats.norm, plot = pylab)                              
 
-
-
-
                     #---- Encoding categorical data ----#
 import pandas as pd
 
@@ -551,14 +539,12 @@ from sklearn.preprocessing import OneHotEncoder
 enc = OneHotEncoder()
 enc_df = pd.DataFrame(enc.fit_transform(data.iloc[:, 1:4]).toarray())
 
-
                     #----- Normalisation -----#
 def norm_func(i):
     x = (i-i.min())/(i.max()-i.min())
     return(x)
 
 data['Price_norm'] = norm_func(data['Price_replaced'])
-
 
 # pushing the data into MySQL 
 from sqlalchemy import create_engine
@@ -567,7 +553,6 @@ data.to_sql('spices_data', con=engine, if_exists='replace', index=False)
 ```
 </details>
 
- 
 ### Using Power BI.
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/Screenshot%20(328).png)
 
