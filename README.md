@@ -5,7 +5,7 @@ The business problem at hand is the unpredictable fluctuation in the prices of r
 First, I collected research papers related to our problem and after that I tried to obtain any relevant dataset from the collected research articles. Using a secondary dataset (provided by our client) I performed Exploratory Data Analysis (EDA) using MySQL and Python for deriving preliminary insights from the data. After EDA, I jumped into the Data Preprocessing section and cleaned the raw data accordingly using MySQL and Python. Then, I pushed the cleaned data from MySQL to Power BI for visualizing the data. I also used MS Excel as well as an open-source online platform called Looker Studio for creating interactive dashboards.
 ### EDA and presprocessing code	
 <details>
-  <summary>Click to expand EDA section</summary></details>
+  <summary>Click to expand EDA section</summary>
   
 ```sql
 -- MySQL code
@@ -345,7 +345,9 @@ ALTER TABLE spices_data ADD date DATE;
 set sql_safe_updates = 0;
 UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
 </details>
- ``` 
+ ```
+
+</details> 
 
 <details> <summary>Click to expand Python code</summary></details>
 
