@@ -5,8 +5,10 @@ The business problem at hand is the unpredictable fluctuation in the prices of r
 First, I collected research papers related to our problem and after that I tried to obtain any relevant dataset from the collected research articles. Using a secondary dataset (provided by our client) I performed Exploratory Data Analysis (EDA) using MySQL and Python for deriving preliminary insights from the data. After EDA, I jumped into the Data Preprocessing section and cleaned the raw data accordingly using MySQL and Python. Then, I pushed the cleaned data from MySQL to Power BI for visualizing the data. I also used MS Excel as well as an open-source online platform called Looker Studio for creating interactive dashboards.
 ### EDA and presprocessing code	
 <details>
-  <summary>Click to expand MySQL code</summary> </details>  
-```MySQL
+  <summary>Click to expand MySQL code</summary> 
+  
+```sql
+-- MySQL code
 CREATE DATABASE IF NOT EXISTS Forecasting_db;
 USE Forecasting_db;
 
@@ -344,18 +346,10 @@ SELECT * FROM spices_data;
 ALTER TABLE spices_data ADD date DATE;
 set sql_safe_updates = 0;
 UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
+</details>
 
+<details> <summary>Click to expand Python code</summary>
 
-
-SELECT host FROM mysql.user WHERE user = 'root';
-
-
-select distinct(Location) from spices_data WHERE Price_new = 'medium';
-
-select max(Price_replaced) from spices_data;
-
-<details>
-  <summary>Click to expand Python code</summary></details>
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -574,7 +568,7 @@ data['Price_norm'] = norm_func(data['Price_replaced'])
 from sqlalchemy import create_engine
 engine = create_engine('mysql+pymysql://root:password@Localhost/Forecasting_db')
 data.to_sql('spices_data', con=engine, if_exists='replace', index=False)
-```
+</details>```
  
 ### Using Power BI.
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/Screenshot%20(328).png)
