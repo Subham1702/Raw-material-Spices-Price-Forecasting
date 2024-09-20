@@ -349,9 +349,11 @@ UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
 
 </details> 
 
+
 <details> <summary>Click to expand EDA and Pre-processing using Python</summary></details>
 
 ```python
+-- Python code
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -567,9 +569,9 @@ data['Price_norm'] = norm_func(data['Price_replaced'])
 from sqlalchemy import create_engine
 engine = create_engine('mysql+pymysql://root:password@Localhost/Forecasting_db')
 data.to_sql('spices_data', con=engine, if_exists='replace', index=False)
- ```
 
-</details> 
+<\details>  ```
+
  
 ### Using Power BI.
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/Screenshot%20(328).png)
