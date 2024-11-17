@@ -1,14 +1,26 @@
 # Raw-material Price Forecasting.
-## Business Problem: 
-The business problem at hand is the unpredictable fluctuation in the prices of raw spice materials, negatively impacting the cost structure and inventory management.
-## Business Solution: 
-First, I collected research papers related to our problem and after that I tried to obtain any relevant dataset from the collected research articles. Using a secondary dataset (provided by our client) I performed Exploratory Data Analysis (EDA) using MySQL and Python for deriving preliminary insights from the data. After EDA, I jumped into the Data Preprocessing section and cleaned the raw data accordingly using MySQL and Python. Then, I pushed the cleaned data from MySQL to Power BI for visualizing the data. I also used MS Excel as well as an open-source online platform called Looker Studio for creating interactive dashboards.
-### EDA and presprocessing code	
+
+## Project Description: -
+### Business Problem:
+The business problem is the unpredictable fluctuation in the prices of raw spice materials, negatively impacting the cost structure and inventory management.
+### Business Objective: 
+Maximize cost savings through effective inventory management.
+### Business Constraint: 
+Minimize the impact of price volatility on production costs and optimize procurement strategies to ensure stable and affordable raw material sourcing.
+### Business Success Criteria: 
+To optimize procurement strategies and reduce production costs by 10%.
+### Economic Success Criteria: 
+To achieve cost savings in raw material procurement and inventory management of at least 20%.
+
+## Data Understanding:
+Data Dimension = 1044 records, 5 attributes.
+
+## Exploratory Data Analysis(EDA) & Data Preprocessing:
+
 <details>
-  <summary>Click to expand EDA and Preprocessing using MySQL and Python</summary>
+  <summary>EDA using MySQL</summary>
   
-```sql
--- MySQL code
+  ```SQL
 CREATE DATABASE IF NOT EXISTS Forecasting_db;
 USE Forecasting_db;
 
@@ -344,9 +356,12 @@ SELECT * FROM spices_data;
 ALTER TABLE spices_data ADD date DATE;
 set sql_safe_updates = 0;
 UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
-
-
-
+```
+</details>
+<details>
+  <summary>EDA using Python</summary>
+	
+  ```Python
 # Using Python
 import numpy as np
 import matplotlib.pyplot as plt
