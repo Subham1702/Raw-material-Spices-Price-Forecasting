@@ -598,6 +598,7 @@ plt.grid(True)
 plt.legend()
 plt.show()	
 ```
+ ![alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/blob/main/Average%20annual%20price%20trend.png)
 - **Trend Identification**: Prices exhibit clear fluctuations over the years, with periods of stability and sharp variations, reflecting market dynamics such as supply chain disruptions or demand shifts.
 - **Market Volatility**: Significant year-to-year price changes indicate high market volatility, emphasizing the need for strategies like risk mitigation and diversified sourcing.
 - **Strategic Planning**: Historical trends can guide predictive modeling, enabling better procurement strategies, leveraging stable years for cost-saving contracts and hedging during volatile periods.
