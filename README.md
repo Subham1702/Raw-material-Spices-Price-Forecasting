@@ -576,12 +576,12 @@ data.to_sql('spices_data', con=engine, if_exists='replace', index=False)
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/IMG-20240408-WA0001.jpg)
 
 ## Insights from the Data Analysis:
-1) The dataset comprises 21 distinct types of spices, each representing a unique category within the dataset.
-2) The dataset includes 10 unique geographic locations, which serve as key identifiers for the price and distribution data.
+ - The dataset comprises 21 distinct types of spices, each representing a unique category within the dataset.
+ - The dataset includes 10 unique geographic locations, which serve as key identifiers for the price and distribution data.
 
 ### Statistical Insights: -
 1) Average annual price trend.
-```Python
+ ```Python
 # Add a year column for grouping by year
 data['Year'] = data['Date'].dt.year
 
@@ -603,7 +603,7 @@ plt.show()
 - **Strategic Planning**: Historical trends can guide predictive modeling, enabling better procurement strategies, leveraging stable years for cost-saving contracts and hedging during volatile periods.
 
 2) Average Price By Spice Type.
-```Python
+ ```Python
 plt.figure(figsize=(12, 8))
 spice_price_stats.plot(kind='barh')
 plt.title('Average Price by Spice Type', fontsize=14)
@@ -612,20 +612,17 @@ plt.ylabel('Spice Type', fontsize=12)
 plt.grid(axis='x')
 plt.show()	
 ```
- a) High-Value Spices:
-	 - Saffron and Cardamom (Small variants) have significantly higher average prices, indicating their premium status in the market.
-	 - These spices may require specialized procurement strategies to minimize costs.
- b) Low-Cost Spices:
-	 - Spices like Coriander and Fenugreek have notably lower average prices, making them cost-effective for bulk purchasing.
-	 - These can serve as stable, high-volume items in inventory management.
- c) Price Distribution:
-	 - The wide range of average prices across spice types highlights the diversity in market dynamics.
-	 - Higher-priced spices likely reflect limited supply, higher production costs, or premium quality, while lower prices indicate higher availability and ease of production.
- d) Cost Optimization Opportunities:
-	 - Focusing on bulk purchasing low-cost spices and strategic procurement of high-cost spices during low-demand periods can lead to significant cost savings.
+ 
+ - Saffron and Cardamom (Small variants) have significantly higher average prices, indicating their premium status in the market.
+ - These spices may require specialized procurement strategies to minimize costs.
+ - Spices like Coriander and Fenugreek have notably lower average prices, making them cost-effective for bulk purchasing.
+ - These can serve as stable, high-volume items in inventory management.
+ - The wide range of average prices across spice types highlights the diversity in market dynamics.
+ - Higher-priced spices likely reflect limited supply, higher production costs, or premium quality, while lower prices indicate higher availability and ease of production.
+ - Focusing on bulk purchasing low-cost spices and strategic procurement of high-cost spices during low-demand periods can lead to significant cost savings.
  
 3) Average Price By Location.
-```Python
+ ```Python
 plt.figure(figsize=(12, 8))
 avg_price_by_location.sort_values().plot(kind='bar', edgecolor='black')
 
@@ -638,13 +635,12 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()	
 ```
-a) Low-Cost Locations:
-	 - Locations like Chennai and Cochin have significantly lower average prices, making them favorable for cost-effective procurement.
-b) High-Cost Locations:
-	 - Locations such as Delhi stand out with the highest average prices, indicating potential challenges for procurement from this region.
+
+ - Locations like Chennai and Cochin have significantly lower average prices, making them favorable for cost-effective procurement.
+ - Locations such as Delhi stand out with the highest average prices, indicating potential challenges for procurement from this region.
 
 4) Seasonal Price Trends (Average Price By Month).
-```Python
+ ```Python
 # Extract month from the Date column to analyze seasonal trends
 data_new['Month'] = data_new['Date'].dt.month
 
@@ -664,3 +660,58 @@ plt.legend()
 plt.show()
 ```
   
+ - Certain months (e.g., March and September) exhibit noticeable peaks in average prices, suggesting higher demand or reduced supply during these periods.
+ - Months like June and November show lower average prices, possibly due to seasonal harvests or reduced demand.
+ - The chart indicates potential cyclicality, where specific times of the year tend to have consistently higher or lower prices.
+
+5) Seasonal Price Trends For Selected Spices(Coriander, Turmeric, Saffron, Cardamom (Large), and Cumin).
+  ```Python
+# Analyze seasonal trends for specific spices
+# Group data by Spice and Month, and calculate the average price for each spice per month
+spice_seasonal_trends = data_new.groupby(['Spices', 'Month'])['Price'].mean().unstack()
+
+# Plotting the seasonal price trends for a few selected spices
+selected_spices = ['CORIANDER', 'TURMERIC', 'SAFFRON', 'CARDAMOM(LARGE)', 'CUMIN']
+plt.figure(figsize=(14, 8))
+
+for spice in selected_spices:
+    if spice in spice_seasonal_trends.index:
+        plt.plot(spice_seasonal_trends.columns, spice_seasonal_trends.loc[spice], marker='o', label=spice)
+
+# Adding titles and labels
+plt.title('Seasonal Price Trends for Selected Spices', fontsize=14)
+plt.xlabel('Month', fontsize=12)
+plt.ylabel('Average Price', fontsize=12)
+plt.xticks(ticks=range(1, 13), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.grid(True)
+plt.legend(title='Spices')
+plt.tight_layout()
+plt.show()
+```  
+
+ - Coriander: Prices remain relatively stable throughout the year with minor fluctuations.
+ - Saffron: Prices peak in the later months (October to December), indicating high seasonal demand.
+ - Turmeric: Prices are lower in mid-year months (May to July) and rise towards the end of the year.
+ - Cardamom (Large): Exhibits sharp price increases in the second half of the year, suggesting seasonal scarcity.
+ - Cumin: Prices show moderate fluctuations, peaking in specific months (e.g., March and September).
+
+
+### Business Insights & Procurement strategies: -
+ - Prices exhibit clear year-to-year fluctuations, influenced by market dynamics, supply chain issues, and demand cycles.
+ - Strategy: Use historical data to develop predictive models for price forecasting, enabling proactive procurement during stable or low-price years.
+     
+ - Locations like Chennai and Cochin offer lower average prices, making them cost-effective for procurement.
+ - Locations like Delhi are significantly costlier, requiring careful consideration of logistics and alternative suppliers.
+ - Strategy: Focus procurement in low-cost regions while assessing logistics costs to maximize savings.
+
+ - Significant price variability is observed in regions like Delhi, indicating higher market volatility.
+ - Regions like Chennai show relatively stable price distributions, providing reliability in cost estimation.
+ - Strategy: Mitigate risk in volatile regions by leveraging forward contracts or sourcing from multiple stable locations.
+
+ - High-value spices like Saffron and Cardamom have premium prices, whereas low-cost spices like Coriander and Fenugreek are economical for bulk purchasing.
+ - Strategy: Plan for bulk procurement of low-cost spices to maintain inventory levels, and negotiate contracts for high-value spices during their off-peak seasons.
+
+ - Spices such as Saffron and Cardamom (Large) exhibit sharp price spikes in specific months, aligning with seasonal demand.
+ - Spices like Turmeric and Coriander maintain moderate stability or show predictable mid-year lows.
+ - Strategy: Schedule purchases for spices like Turmeric and Cumin during low-price months; secure inventory for high-demand spices like Saffron before peak price periods.  
