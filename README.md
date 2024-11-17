@@ -580,7 +580,7 @@ data.to_sql('spices_data', con=engine, if_exists='replace', index=False)
  - The dataset includes 10 unique geographic locations, which serve as key identifiers for the price and distribution data.
 
 ### Statistical Insights: -
-1) Average annual price trend.
+#### 1) Average annual price trend.
  ```Python
 # Add a year column for grouping by year
 data['Year'] = data['Date'].dt.year
@@ -602,7 +602,7 @@ plt.show()
 - **Market Volatility**: Significant year-to-year price changes indicate high market volatility, emphasizing the need for strategies like risk mitigation and diversified sourcing.
 - **Strategic Planning**: Historical trends can guide predictive modeling, enabling better procurement strategies, leveraging stable years for cost-saving contracts and hedging during volatile periods.
 
-2) Average Price By Spice Type.
+#### 2) Average Price By Spice Type.
  ```Python
 plt.figure(figsize=(12, 8))
 spice_price_stats.plot(kind='barh')
@@ -621,7 +621,7 @@ plt.show()
  - Higher-priced spices likely reflect limited supply, higher production costs, or premium quality, while lower prices indicate higher availability and ease of production.
  - Focusing on bulk purchasing low-cost spices and strategic procurement of high-cost spices during low-demand periods can lead to significant cost savings.
  
-3) Average Price By Location.
+#### 3) Average Price By Location.
  ```Python
 plt.figure(figsize=(12, 8))
 avg_price_by_location.sort_values().plot(kind='bar', edgecolor='black')
@@ -639,7 +639,7 @@ plt.show()
  - Locations like Chennai and Cochin have significantly lower average prices, making them favorable for cost-effective procurement.
  - Locations such as Delhi stand out with the highest average prices, indicating potential challenges for procurement from this region.
 
-4) Seasonal Price Trends (Average Price By Month).
+#### 4) Seasonal Price Trends (Average Price By Month).
  ```Python
 # Extract month from the Date column to analyze seasonal trends
 data_new['Month'] = data_new['Date'].dt.month
@@ -664,7 +664,7 @@ plt.show()
  - Months like June and November show lower average prices, possibly due to seasonal harvests or reduced demand.
  - The chart indicates potential cyclicality, where specific times of the year tend to have consistently higher or lower prices.
 
-5) Seasonal Price Trends For Selected Spices(Coriander, Turmeric, Saffron, Cardamom (Large), and Cumin).
+#### 5) Seasonal Price Trends For Selected Spices(Coriander, Turmeric, Saffron, Cardamom (Large), and Cumin).
   ```Python
 # Analyze seasonal trends for specific spices
 # Group data by Spice and Month, and calculate the average price for each spice per month
