@@ -600,4 +600,67 @@ plt.show()
 ```
 - **Trend Identification**: Prices exhibit clear fluctuations over the years, with periods of stability and sharp variations, reflecting market dynamics such as supply chain disruptions or demand shifts.
 - **Market Volatility**: Significant year-to-year price changes indicate high market volatility, emphasizing the need for strategies like risk mitigation and diversified sourcing.
-- **Strategic Planning**: Historical trends can guide predictive modeling, enabling better procurement strategies, leveraging stable years for cost-saving contracts and hedging during volatile periods. 
+- **Strategic Planning**: Historical trends can guide predictive modeling, enabling better procurement strategies, leveraging stable years for cost-saving contracts and hedging during volatile periods.
+
+2) Average Price By Spice Type.
+```Python
+plt.figure(figsize=(12, 8))
+spice_price_stats.plot(kind='barh')
+plt.title('Average Price by Spice Type', fontsize=14)
+plt.xlabel('Average Price', fontsize=12)
+plt.ylabel('Spice Type', fontsize=12)
+plt.grid(axis='x')
+plt.show()	
+```
+ a) High-Value Spices:
+	 - Saffron and Cardamom (Small variants) have significantly higher average prices, indicating their premium status in the market.
+	 - These spices may require specialized procurement strategies to minimize costs.
+ b) Low-Cost Spices:
+	 - Spices like Coriander and Fenugreek have notably lower average prices, making them cost-effective for bulk purchasing.
+	 - These can serve as stable, high-volume items in inventory management.
+ c) Price Distribution:
+	 - The wide range of average prices across spice types highlights the diversity in market dynamics.
+	 - Higher-priced spices likely reflect limited supply, higher production costs, or premium quality, while lower prices indicate higher availability and ease of production.
+ d) Cost Optimization Opportunities:
+	 - Focusing on bulk purchasing low-cost spices and strategic procurement of high-cost spices during low-demand periods can lead to significant cost savings.
+ 
+3) Average Price By Location.
+```Python
+plt.figure(figsize=(12, 8))
+avg_price_by_location.sort_values().plot(kind='bar', edgecolor='black')
+
+# Adding titles and labels
+plt.title('Average Price by Location (Column Chart)', fontsize=14)
+plt.xlabel('Location', fontsize=12)
+plt.ylabel('Average Price', fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()	
+```
+a) Low-Cost Locations:
+	 - Locations like Chennai and Cochin have significantly lower average prices, making them favorable for cost-effective procurement.
+b) High-Cost Locations:
+	 - Locations such as Delhi stand out with the highest average prices, indicating potential challenges for procurement from this region.
+
+4) Seasonal Price Trends (Average Price By Month).
+```Python
+# Extract month from the Date column to analyze seasonal trends
+data_new['Month'] = data_new['Date'].dt.month
+
+# Group by month and calculate the average price to identify seasonal trends
+monthly_price_trends = data_new.groupby('Month')['Price'].mean()
+
+# Plotting seasonal price trends
+plt.figure(figsize=(12, 6))
+plt.plot(monthly_price_trends, marker='o', linestyle='-', label='Average Price')
+plt.title('Seasonal Price Trends (Average Price by Month)', fontsize=14)
+plt.xlabel('Month', fontsize=12)
+plt.ylabel('Average Price', fontsize=12)
+plt.xticks(ticks=range(1, 13), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+  
