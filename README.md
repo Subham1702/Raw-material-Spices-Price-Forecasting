@@ -613,7 +613,7 @@ plt.ylabel('Spice Type', fontsize=12)
 plt.grid(axis='x')
 plt.show()	
 ```
- 
+ ![alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/blob/main/Average%20Price%20By%20Spice%20Type.png)
  - Saffron and Cardamom (Small variants) have significantly higher average prices, indicating their premium status in the market.
  - These spices may require specialized procurement strategies to minimize costs.
  - Spices like Coriander and Fenugreek have notably lower average prices, making them cost-effective for bulk purchasing.
@@ -636,7 +636,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()	
 ```
-
+ ![alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/blob/main/Average%20Price%20By%20Location.png)
  - Locations like Chennai and Cochin have significantly lower average prices, making them favorable for cost-effective procurement.
  - Locations such as Delhi stand out with the highest average prices, indicating potential challenges for procurement from this region.
 
@@ -660,7 +660,7 @@ plt.grid(True)
 plt.legend()
 plt.show()
 ```
-  
+ ![alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/blob/main/Seasonal%20Price%20Trends.png) 
  - Certain months (e.g., March and September) exhibit noticeable peaks in average prices, suggesting higher demand or reduced supply during these periods.
  - Months like June and November show lower average prices, possibly due to seasonal harvests or reduced demand.
  - The chart indicates potential cyclicality, where specific times of the year tend to have consistently higher or lower prices.
@@ -690,7 +690,7 @@ plt.legend(title='Spices')
 plt.tight_layout()
 plt.show()
 ```  
-
+ ![alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/blob/main/Seasonal%20Price%20Trends%20For%20Selected%20Spices.png)
  - Coriander: Prices remain relatively stable throughout the year with minor fluctuations.
  - Saffron: Prices peak in the later months (October to December), indicating high seasonal demand.
  - Turmeric: Prices are lower in mid-year months (May to July) and rise towards the end of the year.
