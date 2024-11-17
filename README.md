@@ -362,7 +362,6 @@ UPDATE spices_data SET date = STR_TO_DATE(Mon_Year, '%d-%m-%Y');
   <summary>EDA using Python</summary>
 	
   ```Python
-# Using Python
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -568,20 +567,37 @@ data.to_sql('spices_data', con=engine, if_exists='replace', index=False)
 ```
 </details>
 
+## Data Visualization:
+
 ### Using Power BI.
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/Screenshot%20(328).png)
 
 ### Using Looker Studio.
 ![Alt text](https://github.com/Subham1702/Raw-material-Spices-Price-Forecasting/raw/main/IMG-20240408-WA0001.jpg)
 
-## Technology stack:
-### 1. For EDA and Data Preprocessing:
-• Python: NumPy, Pandas, Matplotlib, Seaborn.
-• MySQL
-### 2. For Data Visualization:
-• Power Bi.
-• Looker Studio.
-• MS Excel.
-## Business Benefits:
-• Optimize procurement strategies and reduce production costs by 10%.
-• Achieve cost savings in raw material procurement and inventory management at least by 20%.
+## Insights from the Data Analysis:
+1) The dataset comprises 21 distinct types of spices, each representing a unique category within the dataset.
+2) The dataset includes 10 unique geographic locations, which serve as key identifiers for the price and distribution data.
+
+### Statistical Insights: -
+1) Average annual price trend.
+```Python
+# Add a year column for grouping by year
+data['Year'] = data['Date'].dt.year
+
+# Calculate the average price per year
+yearly_price_trends = data.groupby('Year')['Price'].mean()
+
+# Plot the average price trend by year
+plt.figure(figsize=(12, 6))
+plt.plot(yearly_price_trends, marker='o', linestyle='-', label='Average Price')
+plt.title('Average Price Trend Over Years', fontsize=14)
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Average Price', fontsize=12)
+plt.grid(True)
+plt.legend()
+plt.show()	
+```
+- **Trend Identification**: Prices exhibit clear fluctuations over the years, with periods of stability and sharp variations, reflecting market dynamics such as supply chain disruptions or demand shifts.
+- **Market Volatility**: Significant year-to-year price changes indicate high market volatility, emphasizing the need for strategies like risk mitigation and diversified sourcing.
+- **Strategic Planning**: Historical trends can guide predictive modeling, enabling better procurement strategies, leveraging stable years for cost-saving contracts and hedging during volatile periods. 
